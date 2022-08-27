@@ -29,5 +29,9 @@ namespace BCRABusiness.Models
         [Required(ErrorMessage = "Confirm Mail is Required")]
         [Compare("Mail", ErrorMessage = "Mails don't match")]
         public String ConfirmMail { get; set; }
+        [Required(ErrorMessage = "Address is Required"), MinLength(3), MaxLength(40)]
+        public String Address { get; set; }
+        public Double Latitude { get; set; }
+        public Double Longitude { get; set; }
     }
 }
