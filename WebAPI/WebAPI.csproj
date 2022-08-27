@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="DAL">
       <HintPath>..\DataAccess\bin\Debug\DAL.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -153,6 +154,7 @@
     <ProjectReference Include="..\BCRABusiness\BCRABusiness.csproj">
       <Project>{8145397A-1633-41FC-8B98-9E1098E50DF2}</Project>
       <Name>BCRABusiness</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -6,7 +6,7 @@ using BCRABusiness.Models;
 
 namespace DataAccess.Utils
 {
-    public class Initializer
+    static class Initializer
     {
         public static List<Employee> SeedEmployees()
         {

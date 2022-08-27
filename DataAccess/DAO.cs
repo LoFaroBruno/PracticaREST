@@ -25,7 +25,7 @@ namespace DataAccess
         }
         public int SaveEmployee(Employee employee)
         {
-            employee.ID = _employees.Count;
+            employee.ID = _employees[_employees.Count - 1].ID + 1;
             _employees.Add(employee);
             return employee.ID;
         }
@@ -38,8 +38,9 @@ namespace DataAccess
             Employee deletedEmployee;
             try
             {
-                deletedEmployee = _employees[Id];
-                _employees.RemoveAt(Id);
+                int index = _employees.FindIndex(e => e.ID == Id);
+                deletedEmployee = _employees[index];
+                _employees.RemoveAt(index);
             }
             //change the type of exception
             catch
@@ -49,18 +50,20 @@ namespace DataAccess
             return deletedEmployee;
         }
 
-        public Employee UpdateEmployee(int ID, Employee employee)
+        public Employee UpdateEmployee(int Id, Employee employee)
         {
-            employee.ID = ID;
             try
             {
-                _employees[ID] = employee;
+                int index = _employees.FindIndex(e => e.ID == Id);
+                employee.ID = Id;
+                _employees[index] = employee;
             }
+            //change the type of exception
             catch
             {
                 throw new Exception("No Employee matches the given Id");
             }
-            return _employees[ID];
+            return _employees[Id];
         }
     }
 }
