@@ -51,6 +51,8 @@ C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\roslyn\vbc.rsp
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\roslyn\VBCSCompiler.exe
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\Antlr3.Runtime.dll
+C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\BCRABusiness.dll
+C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\DAL.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\Newtonsoft.Json.dll
@@ -65,7 +67,9 @@ C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\System.Web.WebPage
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\System.Web.WebPages.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\System.Web.WebPages.Razor.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\WebGrease.dll
+C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\BCRABusiness.pdb
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\Antlr3.Runtime.pdb
+C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\DAL.pdb
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\System.Web.Helpers.xml
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\System.Web.Mvc.xml
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\WebAPI\bin\System.Web.Optimization.xml
