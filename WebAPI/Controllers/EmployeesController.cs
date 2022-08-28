@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         
         // POST: Employees
         [ValidateModel]
-        public HttpResponseMessage Post(Employee employee)
+        public HttpResponseMessage Post(Employee_GeocodingInfo employee)
         {
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, Dao.SaveEmployee(employee));
         }
@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
         // DELETE: Employees/ID
         public HttpResponseMessage Delete(int ID)
         {
-            Employee deletedEmployee;
+            Employee_GeocodingInfo deletedEmployee;
             try
             {
                 deletedEmployee = Dao.DeleteEmployee(ID);
@@ -60,9 +60,9 @@ namespace WebAPI.Controllers
         
         // PUT: Employees/ID
         [ValidateModel]
-        public HttpResponseMessage Put(int ID, Employee employee)
+        public HttpResponseMessage Put(int ID, Employee_GeocodingInfo employee)
         {
-            Employee updatedEmployee;
+            Employee_GeocodingInfo updatedEmployee;
             try
             {
                 updatedEmployee = Dao.UpdateEmployee(ID, employee);
