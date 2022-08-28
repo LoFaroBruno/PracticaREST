@@ -7,20 +7,20 @@ namespace DataAccess
 {
     public class DAO
     {
-        private static List<Employee> _employees;
+        private static List<Employee_GeocodingInfo> _employees;
         public DAO()
         {
             _employees = Initializer.SeedEmployees();
         }
-        public List<Employee> GetEmployees()
+        public List<Employee_GeocodingInfo> GetEmployees()
         {
             return _employees;
         }
-        public Employee GetEmployee(int Id)
+        public Employee_GeocodingInfo GetEmployee(int Id)
         {
             return _employees[Id];
         }
-        public int SaveEmployee(Employee employee)
+        public int SaveEmployee(Employee_GeocodingInfo employee)
         {
             employee.ID = _employees[_employees.Count - 1].ID + 1;
             _employees.Add(employee);
@@ -30,9 +30,9 @@ namespace DataAccess
         {
             _employees.Clear();
         }
-        public Employee DeleteEmployee(int Id)
+        public Employee_GeocodingInfo DeleteEmployee(int Id)
         {
-            Employee deletedEmployee;
+            Employee_GeocodingInfo deletedEmployee;
             try
             {
                 int index = _employees.FindIndex(e => e.ID == Id);
@@ -42,12 +42,12 @@ namespace DataAccess
             //change the type of exception
             catch
             {
-                throw new Exception("No Employee matches the given Id");
+                throw new Exception("No employee matches the given Id");
             }
             return deletedEmployee;
         }
 
-        public Employee UpdateEmployee(int Id, Employee employee)
+        public Employee_GeocodingInfo UpdateEmployee(int Id, Employee_GeocodingInfo employee)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace DataAccess
             //change the type of exception
             catch
             {
-                throw new Exception("No Employee matches the given Id");
+                throw new Exception("No employee matches the given Id");
             }
             return _employees[Id];
         }
