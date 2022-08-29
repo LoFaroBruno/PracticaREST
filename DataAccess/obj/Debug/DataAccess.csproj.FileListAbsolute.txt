@@ -17,12 +17,14 @@ C:\Users\D78650\Desktop\src\practicas\PracticaREST_I\DataAccess\obj\Debug\DataAc
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\DAL.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\DAL.pdb
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\Newtonsoft.Json.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\System.Web.Helpers.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\System.Web.Mvc.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\System.Web.Razor.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\System.Web.WebPages.Deployment.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\System.Web.WebPages.dll
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\Newtonsoft.Json.xml
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\System.Web.Helpers.xml
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\System.Web.Mvc.xml
 C:\Users\D78650\Desktop\src\practicas\PracticaREST\DataAccess\bin\Debug\System.Web.Razor.xml

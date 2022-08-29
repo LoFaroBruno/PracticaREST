@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DataAccess.Utils;
 using BCRABusiness.Models;
+using System.Threading.Tasks;
 
 namespace DataAccess
 {
@@ -20,8 +21,11 @@ namespace DataAccess
         {
             return _employees[Id];
         }
-        public int SaveEmployee(Employee_GeocodingInfo employee)
+        public async Task<int> SaveEmployee(Employee_GeocodingInfo employee)
         {
+            (double latitude, double longitude) = await Geocoding.FowardGeocoding(employee.Address, employee.City);
+            employee.Latitude = latitude;
+            employee.Longitude = longitude;
             employee.ID = _employees[_employees.Count - 1].ID + 1;
             _employees.Add(employee);
             return employee.ID;
