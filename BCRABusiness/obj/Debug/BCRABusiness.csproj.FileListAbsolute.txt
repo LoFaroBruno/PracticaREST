@@ -1,9 +1,0 @@
-C:\Users\D78650\Desktop\src\practicas\PracticaREST\BCRABusiness\bin\Debug\BCRABusiness.dll
-C:\Users\D78650\Desktop\src\practicas\PracticaREST\BCRABusiness\bin\Debug\BCRABusiness.pdb
-C:\Users\D78650\Desktop\src\practicas\PracticaREST\BCRABusiness\obj\Debug\BCRABusiness.csproj.AssemblyReference.cache
-C:\Users\D78650\Desktop\src\practicas\PracticaREST\BCRABusiness\obj\Debug\BCRABusiness.csproj.CoreCompileInputs.cache
-C:\Users\D78650\Desktop\src\practicas\PracticaREST\BCRABusiness\obj\Debug\BCRABusiness.dll
-C:\Users\D78650\Desktop\src\practicas\PracticaREST\BCRABusiness\obj\Debug\BCRABusiness.pdb
-C:\Users\D78650\Desktop\src\practicas\PracticaREST\BCRABusiness\bin\Debug\Newtonsoft.Json.dll
-C:\Users\D78650\Desktop\src\practicas\PracticaREST\BCRABusiness\bin\Debug\Newtonsoft.Json.xml
-C:\Users\D78650\Desktop\src\practicas\PracticaREST\BCRABusiness\obj\Debug\BCRABusiness.csproj.CopyComplete
