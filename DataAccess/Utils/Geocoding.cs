@@ -8,11 +8,11 @@ namespace DataAccess.Utils
 {
     public class Geocoding
     {
-        private static string APIUrl = "https://forward-reverse-geocoding.p.rapidapi.com/v1/forward?street={0}&city={1}&country=Argentina&accept-language=es-AR";
+        private static string APIUrl;
         static HttpClient client = new HttpClient();
-        
         public static async Task<(double, double)> FowardGeocoding(string address, string city)
         {
+            APIUrl = ConfigurationManager.AppSettings["API_URL"];
             string urlRequest = string.Format(APIUrl, Uri.EscapeDataString(address), Uri.EscapeDataString(city));
             var client = new HttpClient();
             var request = new HttpRequestMessage
