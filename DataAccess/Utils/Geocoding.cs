@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-
 namespace DataAccess.Utils
 {
     public class Geocoding
@@ -14,12 +13,12 @@ namespace DataAccess.Utils
         
         public static async Task<(double, double)> FowardGeocoding(string address, string city)
         {
-            string urlRequest = string.Format(APIUrl, address, city);
+            string urlRequest = string.Format(APIUrl, Uri.EscapeDataString(address), Uri.EscapeDataString(city));
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri(APIUrl),
+                RequestUri = new Uri(urlRequest),
             };
             request.Headers.Add("x-rapidapi-host", ConfigurationManager.AppSettings["x-rapidapi-host"]);
             request.Headers.Add("x-rapidapi-key", ConfigurationManager.AppSettings["x-rapidapi-key"]);
