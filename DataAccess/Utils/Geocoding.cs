@@ -9,17 +9,17 @@ namespace DataAccess.Utils
 {
     public class Geocoding
     {
-        private static string APIUrl = "https://forward-reverse-geocoding.p.rapidapi.com/v1/forward?domicilio={0}&city={1}&country=Argentina&accept-language=es-AR";
-        
+        private static string APIUrl = "https://forward-reverse-geocoding.p.rapidapi.com/v1/forward?street={0}&city={1}&country=Argentina&accept-language=es-AR";
         static HttpClient client = new HttpClient();
         
         public static async Task<(double, double)> FowardGeocoding(string address, string city)
         {
+            string urlRequest = string.Format(APIUrl, address, city);
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("https://forward-reverse-geocoding.p.rapidapi.com/v1/forward?street=Arenales%2020&city=Buenos%20Aires&state=Ciudad%20Autonoma%20de%20Buenos%20Aires&postalcode=10011&country=Argentina&accept-language=es-AR&polygon_threshold=0.0"),
+                RequestUri = new Uri(APIUrl),
             };
             request.Headers.Add("x-rapidapi-host", ConfigurationManager.AppSettings["x-rapidapi-host"]);
             request.Headers.Add("x-rapidapi-key", ConfigurationManager.AppSettings["x-rapidapi-key"]);
