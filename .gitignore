@@ -453,7 +453,7 @@ $RECYCLE.BIN/
 !.vscode/launch.json
 !.vscode/extensions.json
 
-WebAPI/Web.config
+WebAPI/app.config
 WebAPI/bin
 WebAPI/obj
 BCRABusiness/bin
