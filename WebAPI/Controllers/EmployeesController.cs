@@ -3,6 +3,7 @@ using System.Web.Http;
 using WebAPI.Filters;
 using DataAccess;
 using BCRABusiness.Models;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -31,9 +32,9 @@ namespace WebAPI.Controllers
         
         // POST: Employees
         [ValidateModel]
-        public HttpResponseMessage Post(Employee_GeocodingInfo employee)
+        public async Task<HttpResponseMessage> Post(Employee_GeocodingInfo employee)
         {
-            return Request.CreateResponse(System.Net.HttpStatusCode.OK, Dao.SaveEmployee(employee));
+            return Request.CreateResponse(System.Net.HttpStatusCode.OK, await Dao.SaveEmployee(employee).ConfigureAwait(false));
         }
         
         // DELETE: Employees
