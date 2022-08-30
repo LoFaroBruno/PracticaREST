@@ -23,7 +23,7 @@ namespace DataAccess
         }
         public async Task<int> SaveEmployee(Employee_GeocodingInfo employee)
         {
-            (double latitude, double longitude) = await Geocoding.FowardGeocoding(employee.Address, employee.City);
+            (double latitude, double longitude) = await Geocoding.FowardGeocoding(employee.Address, employee.City).ConfigureAwait(false);
             employee.Latitude = latitude;
             employee.Longitude = longitude;
             employee.ID = _employees[_employees.Count - 1].ID + 1;

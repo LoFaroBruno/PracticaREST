@@ -21,13 +21,19 @@ namespace DataAccess.Utils
                 Method = HttpMethod.Get,
                 RequestUri = new Uri("https://forward-reverse-geocoding.p.rapidapi.com/v1/forward?street=Arenales%2020&city=Buenos%20Aires&state=Ciudad%20Autonoma%20de%20Buenos%20Aires&postalcode=10011&country=Argentina&accept-language=es-AR&polygon_threshold=0.0"),
             };
-            using (var response = await client.SendAsync(request))
+            request.Headers.Add("x-rapidapi-host", ConfigurationManager.AppSettings["x-rapidapi-host"]);
+            request.Headers.Add("x-rapidapi-key", ConfigurationManager.AppSettings["x-rapidapi-key"]);
+            double latitude;
+            double longitude;
+            using (var response = await client.SendAsync(request).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
-                var body = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(body);
+                string content = await response.Content.ReadAsStringAsync();
+                dynamic location = JsonConvert.DeserializeObject(content);
+                latitude = double.Parse(location[0]["lat"].ToString().Replace(".", ","));
+                longitude = double.Parse(location[0]["lon"].ToString().Replace(".", ","));
             }
-            return (2.0, 2.1);
+            return (latitude, longitude);
         }
     }
 }
