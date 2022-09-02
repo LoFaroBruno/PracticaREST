@@ -3,72 +3,90 @@ using System.Collections.Generic;
 using DataAccess.Utils;
 using BCRABusiness.Models;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace DataAccess
 {
     public class DAO
     {
-        private static List<Employee_GeocodingInfo> _employees;
         private ApplicationDbContext _context;
         public DAO()
         {
-            _employees = Initializer.SeedEmployees();
             _context = new ApplicationDbContext();
         }
         public List<Employee_GeocodingInfo> GetEmployees()
         {
-            return _employees;
+            return _context.Employee_GeocodingInfo.ToList();
         }
         public Employee_GeocodingInfo GetEmployee(int Id)
         {
-            return _employees[Id];
+            return _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
         }
         public async Task<int> SaveEmployee(Employee_GeocodingInfo employee)
         {
             (double latitude, double longitude) = await Geocoding.FowardGeocoding(employee.Address, employee.City).ConfigureAwait(false);
             employee.Latitude = latitude;
             employee.Longitude = longitude;
-            employee.ID = _employees[_employees.Count - 1].ID + 1;
-            _employees.Add(employee);
             _context.Employee_GeocodingInfo.Add(employee);
             _context.SaveChanges();
             return employee.ID;
         }
         public void DeleteEmployees()
         {
-            _employees.Clear();
+            _context.Database.ExecuteSqlCommand($"TRUNCATE TABLE [Employee_GeocodingInfo]");
+            _context.SaveChanges();
         }
         public Employee_GeocodingInfo DeleteEmployee(int Id)
         {
-            Employee_GeocodingInfo deletedEmployee;
-            try
-            {
-                int index = _employees.FindIndex(e => e.ID == Id);
-                deletedEmployee = _employees[index];
-                _employees.RemoveAt(index);
-            }
-            //change the type of exception
-            catch
-            {
-                throw new Exception("No employee matches the given Id");
-            }
-            return deletedEmployee;
+            Employee_GeocodingInfo employeeToDelete = _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
+
+            if(employeeToDelete == null)
+            throw new Exception("No employee matches the given Id");
+
+            _context.Employee_GeocodingInfo.Remove(employeeToDelete);
+            _context.SaveChanges();
+            return employeeToDelete;
         }
 
-        public Employee_GeocodingInfo UpdateEmployee(int Id, Employee_GeocodingInfo employee)
+        public async Task<Employee_GeocodingInfo> UpdateEmployee(int Id, Employee_GeocodingInfo employee)
         {
+            Employee_GeocodingInfo employeeToUpdate = _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
+
+            if (employeeToUpdate == null)
+                throw new Exception("No employee matches the given Id");
+
+            employeeToUpdate.FirstName = employee.FirstName;
+            employeeToUpdate.LastName = employee.LastName;
+            employeeToUpdate.BirthDate = employee.BirthDate;
+            employeeToUpdate.Mail = employee.Mail;
+            employeeToUpdate.ConfirmMail = employee.ConfirmMail;
+            employeeToUpdate.Document = employee.Document;
+            if(!employeeToUpdate.Address.Equals(employee.Address))
+            {
+                employeeToUpdate.City = employee.City;
+                employeeToUpdate.Address = employee.Address;
+                (double latitude, double longitude) = await Geocoding.FowardGeocoding(employee.Address, employee.City).ConfigureAwait(false);
+                employee.Latitude = latitude;
+                employee.Longitude = longitude;
+            }
+            _context.SaveChanges();
+            return employee;
+        }
+        internal void SeedDataBase()
+        {
+            List<Employee_GeocodingInfo> _employees = Initializer.SeedEmployees();
             try
             {
-                int index = _employees.FindIndex(e => e.ID == Id);
-                employee.ID = Id;
-                _employees[index] = employee;
+                foreach (Employee_GeocodingInfo employee in _employees)
+                {
+                    _context.Employee_GeocodingInfo.Add(employee);
+                }
+                _context.SaveChanges();
             }
-            //change the type of exception
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("No employee matches the given Id");
+                throw ex;
             }
-            return _employees[Id];
         }
     }
 }

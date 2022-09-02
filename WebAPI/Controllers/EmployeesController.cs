@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.OK, Dao.GetEmployees());
+                return Request.CreateResponse(System.Net.HttpStatusCode.OK, Dao.GetEmployee(ID));
             }
             catch
             {
@@ -61,12 +61,12 @@ namespace WebAPI.Controllers
         
         // PUT: Employees/ID
         [ValidateModel]
-        public HttpResponseMessage Put(int ID, Employee_GeocodingInfo employee)
+        public async Task<HttpResponseMessage> Put(int ID, Employee_GeocodingInfo employee)
         {
             Employee_GeocodingInfo updatedEmployee;
             try
             {
-                updatedEmployee = Dao.UpdateEmployee(ID, employee);
+                updatedEmployee = await Dao.UpdateEmployee(ID, employee);
             }
             catch
             {
