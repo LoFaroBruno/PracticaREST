@@ -82,5 +82,13 @@ namespace WebAPI.Controllers
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, updatedEmployee);
         }
+        // Seed Endpoint
+        [ValidateModel]
+        [HttpPost]
+        [Route("api/employees/seed")]
+        public async Task<HttpResponseMessage> Seed()
+        {
+            return Request.CreateResponse(System.Net.HttpStatusCode.OK, await Dao.SeedDataBase().ConfigureAwait(false));
+        }
     }
 }

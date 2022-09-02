@@ -93,21 +93,29 @@ namespace DataAccess
             }
             return employee;
         }
-        internal void SeedDataBase()
+        public async Task<List<Employee_GeocodingInfo>> SeedDataBase()
         {
             List<Employee_GeocodingInfo> _employees = Initializer.SeedEmployees();
             try
             {
                 foreach (Employee_GeocodingInfo employee in _employees)
                 {
-                    _context.Employee_GeocodingInfo.Add(employee);
+                    await SaveEmployee(employee);
                 }
-                _context.SaveChanges();
+                try
+                {
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
+            return _employees;
         }
     }
 }
