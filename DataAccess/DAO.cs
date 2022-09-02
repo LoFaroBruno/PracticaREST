@@ -9,9 +9,11 @@ namespace DataAccess
     public class DAO
     {
         private static List<Employee_GeocodingInfo> _employees;
+        private ApplicationDbContext _context;
         public DAO()
         {
             _employees = Initializer.SeedEmployees();
+            _context = new ApplicationDbContext();
         }
         public List<Employee_GeocodingInfo> GetEmployees()
         {
@@ -28,6 +30,8 @@ namespace DataAccess
             employee.Longitude = longitude;
             employee.ID = _employees[_employees.Count - 1].ID + 1;
             _employees.Add(employee);
+            _context.Employee_GeocodingInfo.Add(employee);
+            _context.SaveChanges();
             return employee.ID;
         }
         public void DeleteEmployees()
