@@ -34,7 +34,14 @@ namespace DataAccess
         public void DeleteEmployees()
         {
             _context.Database.ExecuteSqlCommand($"TRUNCATE TABLE [Employee_GeocodingInfo]");
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public Employee_GeocodingInfo DeleteEmployee(int Id)
         {
@@ -44,7 +51,14 @@ namespace DataAccess
             throw new Exception("No employee matches the given Id");
 
             _context.Employee_GeocodingInfo.Remove(employeeToDelete);
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return employeeToDelete;
         }
 
@@ -69,7 +83,14 @@ namespace DataAccess
                 employee.Latitude = latitude;
                 employee.Longitude = longitude;
             }
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
             return employee;
         }
         internal void SeedDataBase()

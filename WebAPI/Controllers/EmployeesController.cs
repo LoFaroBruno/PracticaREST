@@ -4,6 +4,7 @@ using WebAPI.Filters;
 using DataAccess;
 using BCRABusiness.Models;
 using System.Threading.Tasks;
+using System;
 
 namespace WebAPI.Controllers
 {
@@ -40,7 +41,14 @@ namespace WebAPI.Controllers
         // DELETE: Employees
         public HttpResponseMessage Delete()
         {
-            Dao.DeleteEmployees();
+            try
+            {
+                Dao.DeleteEmployees();
+            }
+            catch(Exception Ex)
+            {
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex}");
+            }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK);
         }
         
@@ -68,9 +76,9 @@ namespace WebAPI.Controllers
             {
                 updatedEmployee = await Dao.UpdateEmployee(ID, employee);
             }
-            catch
+            catch(Exception Ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"No employee matches the given id.");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, updatedEmployee);
         }
