@@ -8,7 +8,7 @@ namespace DataAccess
 {
     internal class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext() : base("name=BCRA_DB_ConnectionString")
+        public ApplicationDbContext() : base("BCRA")
         {
 
         }

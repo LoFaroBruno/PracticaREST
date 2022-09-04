@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "927af5ce-299d-4432-a422-fcf1d8c1d6ad",
+		"_postman_id": "85553dfd-259d-4559-b21c-d763727dbb92",
 		"name": "PracticaBCRA",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7134024"
@@ -8,9 +8,25 @@
 	"item": [
 		{
 			"name": "Empleados",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44327/api/employees/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44327",
+					"path": [
+						"api",
+						"employees",
+						""
+					]
+				}
 			},
 			"response": []
 		},
@@ -48,6 +64,9 @@
 		},
 		{
 			"name": "New Request",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -69,9 +88,25 @@
 		},
 		{
 			"name": "New Request",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44327/api/employees/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44327",
+					"path": [
+						"api",
+						"employees",
+						"3"
+					]
+				}
 			},
 			"response": []
 		},
