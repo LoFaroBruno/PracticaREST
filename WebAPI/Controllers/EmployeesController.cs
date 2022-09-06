@@ -5,6 +5,7 @@ using DataAccess;
 using BCRABusiness.Models;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
@@ -15,29 +16,49 @@ namespace WebAPI.Controllers
         // GET: Employees
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(System.Net.HttpStatusCode.OK, Dao.GetEmployees());
+            List<Employee_GeocodingInfo> employees;
+            try
+            {
+                employees = Dao.GetEmployees();
+            }
+            catch (Exception Ex)
+            {
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.InnerException}");
+            }
+            return Request.CreateResponse(System.Net.HttpStatusCode.OK, employees);
         }
 
         // GET: Employees/ID
         public HttpResponseMessage Get(int ID)
         {
+            Employee employee;
             try
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.OK, Dao.GetEmployee(ID));
+                employee = Dao.GetEmployee(ID);
             }
-            catch
+            catch (Exception Ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"No employee matches the given parameters.");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.InnerException}");
             }
+            return Request.CreateResponse(System.Net.HttpStatusCode.OK, employee);
         }
         
         // POST: Employees
         [ValidateModel]
         public async Task<HttpResponseMessage> Post(Employee_GeocodingInfo employee)
         {
-            return Request.CreateResponse(System.Net.HttpStatusCode.OK, await Dao.SaveEmployee(employee).ConfigureAwait(false));
+            Employee_GeocodingInfo savedEmployee;
+            try
+            {
+                savedEmployee = await Dao.SaveEmployee(employee).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"Error saving employee. {ex}");
+            }
+            return Request.CreateResponse(System.Net.HttpStatusCode.OK, savedEmployee);
         }
-        
+
         // DELETE: Employees
         public HttpResponseMessage Delete()
         {
@@ -45,13 +66,13 @@ namespace WebAPI.Controllers
             {
                 Dao.DeleteEmployees();
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex}");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.InnerException}");
             }
-            return Request.CreateResponse(System.Net.HttpStatusCode.OK);
+            return Request.CreateResponse(System.Net.HttpStatusCode.NoContent);
         }
-        
+
         // DELETE: Employees/ID
         public HttpResponseMessage Delete(int ID)
         {
@@ -60,9 +81,9 @@ namespace WebAPI.Controllers
             {
                 deletedEmployee = Dao.DeleteEmployee(ID);
             }
-            catch
+            catch (Exception Ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"No employee matches the given id.");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, deletedEmployee);
         }
@@ -76,9 +97,9 @@ namespace WebAPI.Controllers
             {
                 updatedEmployee = await Dao.UpdateEmployee(ID, employee);
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex}");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, updatedEmployee);
         }

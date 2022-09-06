@@ -22,14 +22,21 @@ namespace DataAccess
         {
             return _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
         }
-        public async Task<int> SaveEmployee(Employee_GeocodingInfo employee)
+        public async Task<Employee_GeocodingInfo> SaveEmployee(Employee_GeocodingInfo employee)
         {
-            (double latitude, double longitude) = await Geocoding.FowardGeocoding(employee.Address, employee.City).ConfigureAwait(false);
-            employee.Latitude = latitude;
-            employee.Longitude = longitude;
-            _context.Employee_GeocodingInfo.Add(employee);
-            _context.SaveChanges();
-            return employee.ID;
+            try
+            {
+                (double latitude, double longitude) = await Geocoding.FowardGeocoding(employee.Address, employee.City).ConfigureAwait(false);
+                employee.Latitude = latitude;
+                employee.Longitude = longitude;
+                _context.Employee_GeocodingInfo.Add(employee);
+                _context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return employee;
         }
         public void DeleteEmployees()
         {

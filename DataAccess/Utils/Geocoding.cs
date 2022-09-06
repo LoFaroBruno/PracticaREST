@@ -7,12 +7,13 @@ namespace DataAccess.Utils
 {
     public class Geocoding
     {
-        private static string APIUrl;
+        private static string baseURL;
         static HttpClient client = new HttpClient();
         public static async Task<(double, double)> FowardGeocoding(string address, string city)
         {
-            APIUrl = ConfigurationManager.AppSettings["API_URL"];
-            string urlRequest = string.Format(APIUrl, Uri.EscapeDataString(address), Uri.EscapeDataString(city));
+            baseURL = ConfigurationManager.AppSettings["API_URL"];
+            baseURL += "?street={0}&city={1}";
+            string urlRequest = string.Format(baseURL, Uri.EscapeDataString(address), Uri.EscapeDataString(city));
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
@@ -23,13 +24,22 @@ namespace DataAccess.Utils
             request.Headers.Add("x-rapidapi-key", ConfigurationManager.AppSettings["x-rapidapi-key"]);
             double latitude;
             double longitude;
-            using (var response = await client.SendAsync(request).ConfigureAwait(false))
+            try
             {
-                response.EnsureSuccessStatusCode();
-                string content = await response.Content.ReadAsStringAsync();
-                dynamic location = JsonConvert.DeserializeObject(content);
-                latitude = double.Parse(location[0]["lat"].ToString().Replace(".", ","));
-                longitude = double.Parse(location[0]["lon"].ToString().Replace(".", ","));
+                using (var response = await client.SendAsync(request).ConfigureAwait(false))
+                {
+                    response.EnsureSuccessStatusCode();
+                    string content = await response.Content.ReadAsStringAsync();
+                    if (string.Equals(content, "{}"))
+                        throw new Exception("Invalid address.");
+                    dynamic location = JsonConvert.DeserializeObject(content);
+                    latitude = double.Parse(location[0]["lat"].ToString().Replace(".", ","));
+                    longitude = double.Parse(location[0]["lon"].ToString().Replace(".", ","));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting geocoding info.",ex);
             }
             return (latitude, longitude);
         }
