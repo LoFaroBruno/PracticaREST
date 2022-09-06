@@ -39,7 +39,7 @@
     </Reference>
     <Reference Include="BCRABusiness">
       <HintPath>..\BCRABusiness\bin\Debug\BCRABusiness.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DAO.cs" />
+    <Compile Include="EmployeeIntializer.cs" />
     <Compile Include="Migrations\202209021805034_InitialCreate.cs" />
     <Compile Include="Migrations\202209021805034_InitialCreate.designer.cs">
       <DependentUpon>202209021805034_InitialCreate.cs</DependentUpon>
@@ -122,7 +123,6 @@
     <Compile Include="Utils\Geocoding.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

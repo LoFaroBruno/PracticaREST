@@ -16,11 +16,29 @@ namespace DataAccess
         }
         public List<Employee_GeocodingInfo> GetEmployees()
         {
-            return _context.Employee_GeocodingInfo.ToList();
+            List<Employee_GeocodingInfo> employees;
+            try
+            {
+                employees = _context.Employee_GeocodingInfo.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return employees;
         }
         public Employee_GeocodingInfo GetEmployee(int Id)
         {
-            return _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
+            Employee_GeocodingInfo employee;
+            try
+            {
+                employee = _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return employee;
         }
         public async Task<Employee_GeocodingInfo> SaveEmployee(Employee_GeocodingInfo employee)
         {
@@ -40,9 +58,9 @@ namespace DataAccess
         }
         public void DeleteEmployees()
         {
-            _context.Database.ExecuteSqlCommand($"TRUNCATE TABLE [Employee_GeocodingInfo]");
             try
             {
+                _context.Database.ExecuteSqlCommand($"TRUNCATE TABLE [Employee_GeocodingInfo]");
                 _context.SaveChanges();
             }
             catch (Exception ex)
@@ -52,14 +70,13 @@ namespace DataAccess
         }
         public Employee_GeocodingInfo DeleteEmployee(int Id)
         {
-            Employee_GeocodingInfo employeeToDelete = _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
-
-            if(employeeToDelete == null)
-            throw new Exception("No employee matches the given Id");
-
-            _context.Employee_GeocodingInfo.Remove(employeeToDelete);
+            Employee_GeocodingInfo employeeToDelete;
             try
             {
+                employeeToDelete = _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
+                if(employeeToDelete == null)
+                    throw new Exception("No employee matches the given Id");
+                _context.Employee_GeocodingInfo.Remove(employeeToDelete);
                 _context.SaveChanges();
             }
             catch (Exception ex)
@@ -71,27 +88,25 @@ namespace DataAccess
 
         public async Task<Employee_GeocodingInfo> UpdateEmployee(int Id, Employee_GeocodingInfo employee)
         {
-            Employee_GeocodingInfo employeeToUpdate = _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
-
-            if (employeeToUpdate == null)
-                throw new Exception("No employee matches the given Id");
-
-            employeeToUpdate.FirstName = employee.FirstName;
-            employeeToUpdate.LastName = employee.LastName;
-            employeeToUpdate.BirthDate = employee.BirthDate;
-            employeeToUpdate.Mail = employee.Mail;
-            employeeToUpdate.ConfirmMail = employee.ConfirmMail;
-            employeeToUpdate.Document = employee.Document;
-            if(!employeeToUpdate.Address.Equals(employee.Address))
-            {
-                employeeToUpdate.City = employee.City;
-                employeeToUpdate.Address = employee.Address;
-                (double latitude, double longitude) = await Geocoding.FowardGeocoding(employee.Address, employee.City).ConfigureAwait(false);
-                employee.Latitude = latitude;
-                employee.Longitude = longitude;
-            }
             try
             {
+                Employee_GeocodingInfo employeeToUpdate = _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
+                if (employeeToUpdate == null)
+                    throw new Exception("No employee matches the given Id");
+                employeeToUpdate.FirstName = employee.FirstName;
+                employeeToUpdate.LastName = employee.LastName;
+                employeeToUpdate.BirthDate = employee.BirthDate;
+                employeeToUpdate.Mail = employee.Mail;
+                employeeToUpdate.ConfirmMail = employee.ConfirmMail;
+                employeeToUpdate.Document = employee.Document;
+                if(!employeeToUpdate.Address.Equals(employee.Address))
+                {
+                    employeeToUpdate.City = employee.City;
+                    employeeToUpdate.Address = employee.Address;
+                    (double latitude, double longitude) = await Geocoding.FowardGeocoding(employee.Address, employee.City).ConfigureAwait(false);
+                    employee.Latitude = latitude;
+                    employee.Longitude = longitude;
+                }
                 _context.SaveChanges();
             }
             catch(Exception ex)

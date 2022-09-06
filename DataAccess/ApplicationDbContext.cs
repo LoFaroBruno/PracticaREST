@@ -6,7 +6,7 @@ using BCRABusiness.Models;
 
 namespace DataAccess
 {
-    internal class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext() : base("BCRA")
         {
