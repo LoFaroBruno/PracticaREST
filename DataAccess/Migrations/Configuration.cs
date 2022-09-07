@@ -20,8 +20,8 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
-            context.Employee_GeocodingInfo.AddOrUpdate(x => x.ID,
-                 new Employee_GeocodingInfo
+            context.EmployeeWithGeocodingData.AddOrUpdate(x => x.ID,
+                 new EmployeeWithGeocodingData
                  {
                      BirthDate = new DateTime(1960, 7, 24),
                      Document = 40113322,
@@ -34,7 +34,7 @@
                      Latitude = -34.6220169,
                      Longitude = -58.381438
                  },
-                new Employee_GeocodingInfo
+                new EmployeeWithGeocodingData
                 {
                     BirthDate = new DateTime(2002, 5, 20),
                     Document = 40224433,
@@ -47,7 +47,7 @@
                     Latitude = -38.731692920408165,
                     Longitude = -62.242195636734692
                 },
-                new Employee_GeocodingInfo
+                new EmployeeWithGeocodingData
                 {
                     BirthDate = new DateTime(2020, 1, 1),
                     Document = 40335544,
@@ -60,7 +60,7 @@
                     Latitude = -34.5978066,
                     Longitude = -58.398269400190848
                 },
-                new Employee_GeocodingInfo
+                new EmployeeWithGeocodingData
                 {
                     BirthDate = new DateTime(1962, 2, 3),
                     Document = 40446655,

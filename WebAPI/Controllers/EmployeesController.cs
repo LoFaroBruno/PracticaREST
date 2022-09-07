@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
         // GET: Employees
         public HttpResponseMessage Get()
         {
-            List<Employee_GeocodingInfo> employees;
+            List<EmployeeWithGeocodingData> employees;
             try
             {
                 employees = Dao.GetEmployees();
@@ -45,9 +45,9 @@ namespace WebAPI.Controllers
         
         // POST: Employees
         [ValidateModel]
-        public async Task<HttpResponseMessage> Post(Employee_GeocodingInfo employee)
+        public async Task<HttpResponseMessage> Post(EmployeeWithGeocodingData employee)
         {
-            Employee_GeocodingInfo savedEmployee;
+            EmployeeWithGeocodingData savedEmployee;
             try
             {
                 savedEmployee = await Dao.SaveEmployee(employee).ConfigureAwait(false);
@@ -76,7 +76,7 @@ namespace WebAPI.Controllers
         // DELETE: Employees/ID
         public HttpResponseMessage Delete(int ID)
         {
-            Employee_GeocodingInfo deletedEmployee;
+            EmployeeWithGeocodingData deletedEmployee;
             try
             {
                 deletedEmployee = Dao.DeleteEmployee(ID);
@@ -90,9 +90,9 @@ namespace WebAPI.Controllers
         
         // PUT: Employees/ID
         [ValidateModel]
-        public async Task<HttpResponseMessage> Put(int ID, Employee_GeocodingInfo employee)
+        public async Task<HttpResponseMessage> Put(int ID, EmployeeWithGeocodingData employee)
         {
-            Employee_GeocodingInfo updatedEmployee;
+            EmployeeWithGeocodingData updatedEmployee;
             try
             {
                 updatedEmployee = await Dao.UpdateEmployee(ID, employee);

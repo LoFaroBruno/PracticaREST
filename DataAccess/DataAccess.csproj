@@ -39,7 +39,6 @@
     </Reference>
     <Reference Include="BCRABusiness">
       <HintPath>..\BCRABusiness\bin\Debug\BCRABusiness.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -118,11 +117,16 @@
     <Compile Include="Migrations\202209021953155_Initial.designer.cs">
       <DependentUpon>202209021953155_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209071759168_AddEmployeeWithGeocodingData.cs" />
+    <Compile Include="Migrations\202209071759168_AddEmployeeWithGeocodingData.designer.cs">
+      <DependentUpon>202209071759168_AddEmployeeWithGeocodingData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Geocoding.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209021953155_Initial.resx">
       <DependentUpon>202209021953155_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209071759168_AddEmployeeWithGeocodingData.resx">
+      <DependentUpon>202209071759168_AddEmployeeWithGeocodingData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

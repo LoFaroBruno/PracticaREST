@@ -12,8 +12,7 @@ namespace DataAccess
         {
 
         }
-        public DbSet<Employee> Employee { get; set; }
-        public DbSet<Employee_GeocodingInfo> Employee_GeocodingInfo { get; set; }
+        public DbSet<EmployeeWithGeocodingData> EmployeeWithGeocodingData { get; set; }
     }
 }
     

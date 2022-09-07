@@ -8,9 +8,9 @@ namespace DataAccess
     {
         protected override void Seed(ApplicationDbContext context)
         {
-            List<Employee_GeocodingInfo> employees = new List<Employee_GeocodingInfo>
+            List<EmployeeWithGeocodingData> employees = new List<EmployeeWithGeocodingData>
             {
-                new Employee_GeocodingInfo
+                new EmployeeWithGeocodingData
                 {
                     BirthDate = new DateTime(1960, 7, 24),
                     Document = 40113322,
@@ -23,7 +23,7 @@ namespace DataAccess
                     Latitude = -34.6220169,
                     Longitude = -58.381438
                 },
-                new Employee_GeocodingInfo
+                new EmployeeWithGeocodingData
                 {
                     BirthDate = new DateTime(2002, 5, 20),
                     Document = 40224433,
@@ -36,7 +36,7 @@ namespace DataAccess
                     Latitude = -38.731692920408165,
                     Longitude = -62.242195636734692
                 },
-                new Employee_GeocodingInfo
+                new EmployeeWithGeocodingData
                 {
                     BirthDate = new DateTime(2020, 1, 1),
                     Document = 40335544,
@@ -49,7 +49,7 @@ namespace DataAccess
                     Latitude = -34.5978066,
                     Longitude = -58.398269400190848
                 },
-                new Employee_GeocodingInfo
+                new EmployeeWithGeocodingData
                 {
                     BirthDate = new DateTime(1962, 2, 3),
                     Document = 40446655,
@@ -63,7 +63,7 @@ namespace DataAccess
                     Longitude = -58.331883266666665
                 }
             };
-            employees.ForEach(s => context.Employee_GeocodingInfo.Add(s));
+            employees.ForEach(s => context.EmployeeWithGeocodingData.Add(s));
             context.SaveChanges();
         }
     }

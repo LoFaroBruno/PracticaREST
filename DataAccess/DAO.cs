@@ -14,12 +14,12 @@ namespace DataAccess
         {
             _context = new ApplicationDbContext();
         }
-        public List<Employee_GeocodingInfo> GetEmployees()
+        public List<EmployeeWithGeocodingData> GetEmployees()
         {
-            List<Employee_GeocodingInfo> employees;
+            List<EmployeeWithGeocodingData> employees;
             try
             {
-                employees = _context.Employee_GeocodingInfo.ToList();
+                employees = _context.EmployeeWithGeocodingData.ToList();
             }
             catch (Exception ex)
             {
@@ -27,12 +27,12 @@ namespace DataAccess
             }
             return employees;
         }
-        public Employee_GeocodingInfo GetEmployee(int Id)
+        public EmployeeWithGeocodingData GetEmployee(int Id)
         {
-            Employee_GeocodingInfo employee;
+            EmployeeWithGeocodingData employee;
             try
             {
-                employee = _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
+                employee = _context.EmployeeWithGeocodingData.Single(e => e.ID == Id);
             }
             catch (Exception ex)
             {
@@ -40,14 +40,14 @@ namespace DataAccess
             }
             return employee;
         }
-        public async Task<Employee_GeocodingInfo> SaveEmployee(Employee_GeocodingInfo employee)
+        public async Task<EmployeeWithGeocodingData> SaveEmployee(EmployeeWithGeocodingData employee)
         {
             try
             {
                 (double latitude, double longitude) = await Geocoding.FowardGeocoding(employee.Address, employee.City).ConfigureAwait(false);
                 employee.Latitude = latitude;
                 employee.Longitude = longitude;
-                _context.Employee_GeocodingInfo.Add(employee);
+                _context.EmployeeWithGeocodingData.Add(employee);
                 _context.SaveChanges();
             }
             catch(Exception ex)
@@ -60,7 +60,7 @@ namespace DataAccess
         {
             try
             {
-                _context.Database.ExecuteSqlCommand($"TRUNCATE TABLE [Employee_GeocodingInfo]");
+                _context.Database.ExecuteSqlCommand($"TRUNCATE TABLE [EmployeeWithGeocodingData]");
                 _context.SaveChanges();
             }
             catch (Exception ex)
@@ -68,15 +68,15 @@ namespace DataAccess
                 throw ex;
             }
         }
-        public Employee_GeocodingInfo DeleteEmployee(int Id)
+        public EmployeeWithGeocodingData DeleteEmployee(int Id)
         {
-            Employee_GeocodingInfo employeeToDelete;
+            EmployeeWithGeocodingData employeeToDelete;
             try
             {
-                employeeToDelete = _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
+                employeeToDelete = _context.EmployeeWithGeocodingData.Single(e => e.ID == Id);
                 if(employeeToDelete == null)
                     throw new Exception("No employee matches the given Id");
-                _context.Employee_GeocodingInfo.Remove(employeeToDelete);
+                _context.EmployeeWithGeocodingData.Remove(employeeToDelete);
                 _context.SaveChanges();
             }
             catch (Exception ex)
@@ -86,11 +86,11 @@ namespace DataAccess
             return employeeToDelete;
         }
 
-        public async Task<Employee_GeocodingInfo> UpdateEmployee(int Id, Employee_GeocodingInfo employee)
+        public async Task<EmployeeWithGeocodingData> UpdateEmployee(int Id, EmployeeWithGeocodingData employee)
         {
             try
             {
-                Employee_GeocodingInfo employeeToUpdate = _context.Employee_GeocodingInfo.Single(e => e.ID == Id);
+                EmployeeWithGeocodingData employeeToUpdate = _context.EmployeeWithGeocodingData.Single(e => e.ID == Id);
                 if (employeeToUpdate == null)
                     throw new Exception("No employee matches the given Id");
                 employeeToUpdate.FirstName = employee.FirstName;
