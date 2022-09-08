@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using DataAccess.Utils;
 using BCRABusiness.Models;
 using System.Threading.Tasks;
 using System.Linq;
+using GeocodingService;
 
 namespace DataAccess
 {

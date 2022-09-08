@@ -3,7 +3,8 @@ using System;
 using System.Configuration;
 using System.Net.Http;
 using System.Threading.Tasks;
-namespace DataAccess.Utils
+
+namespace GeocodingService
 {
     public class Geocoding
     {
