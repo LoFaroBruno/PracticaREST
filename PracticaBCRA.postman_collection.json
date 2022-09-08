@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "85553dfd-259d-4559-b21c-d763727dbb92",
+		"name": "PracticaBCRA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7134024"
+	},
+	"item": [
+		{
+			"name": "Empleados",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44327/api/employees/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44327",
+					"path": [
+						"api",
+						"employees",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ID\":5,\r\n    \"Document\": 40446655,\r\n    \"City\": \"Buenos Aires\",\r\n    \"Address\": \"Paraguay 2155\",\r\n    \"FirstName\": \"Dr. Amelia\",\r\n    \"LastName\": \"Brand\",\r\n    \"BirthDate\": \"1962-02-03T00:00:00\",\r\n    \"Mail\": \"ameliabrand@gmail.com\",\r\n    \"ConfirmMail\": \"ameliabrand@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44327/api/employees",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44327",
+					"path": [
+						"api",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44327/api/employees/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44327",
+					"path": [
+						"api",
+						"employees",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44327/api/employees/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44327",
+					"path": [
+						"api",
+						"employees",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"City\": \"Buenos Aires\",\r\n    \"Address\": \"Malabia 5100\",\r\n    \"Document\": 40446655,\r\n    \"FirstName\": \"Tom\",\r\n    \"LastName\": \"Cruise\",\r\n    \"BirthDate\": \"1962-02-03T00:00:00\",\r\n    \"Mail\": \"tomcruise@gmail.com\",\r\n    \"ConfirmMail\": \"tomcruise@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44327/api/employees/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44327",
+					"path": [
+						"api",
+						"employees",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
