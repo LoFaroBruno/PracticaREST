@@ -11,7 +11,7 @@ namespace WebAPI.Controllers
 {
     public class EmployeesController : ApiController
     {
-        private static DAO Dao = new DAO();
+        private static EmployeeService Dao = new EmployeeService();
 
         // GET: Employees
         public HttpResponseMessage Get()

@@ -8,10 +8,10 @@ using BCRABusiness.Models;
 
 namespace DataAccess
 {
-    public class DAO
+    public class EmployeeService
     {
         private static List<Employee> _employees;
-        public DAO()
+        public EmployeeService()
         {
             _employees = Initializer.SeedEmployees();
         }
