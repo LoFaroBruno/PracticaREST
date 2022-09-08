@@ -21,13 +21,24 @@ namespace DataAccess
         }
         public Employee GetEmployee(int Id)
         {
-            return _employees[Id];
+            Employee employee;
+            try
+            {
+                employee = _employees.Single(e => e.ID == Id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No Employee matches the given Id", ex);
+            }
+            return employee;
         }
-        public int SaveEmployee(Employee employee)
+        public Employee SaveEmployee(Employee employee)
         {
-            employee.ID = _employees[_employees.Count - 1].ID + 1;
+            Employee existingEmployee = _employees.SingleOrDefault(e => e.ID == employee.ID);
+            if(existingEmployee != null)
+                throw new Exception("An employee with the given id already exists.");
             _employees.Add(employee);
-            return employee.ID;
+            return employee;
         }
         public void DeleteEmployees()
         {
@@ -38,32 +49,29 @@ namespace DataAccess
             Employee deletedEmployee;
             try
             {
-                int index = _employees.FindIndex(e => e.ID == Id);
-                deletedEmployee = _employees[index];
-                _employees.RemoveAt(index);
+                deletedEmployee = _employees.Single(e => e.ID == Id);
+                _employees.Remove(deletedEmployee);
             }
-            //change the type of exception
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("No Employee matches the given Id");
+                throw new Exception("No Employee matches the given Id", ex);
             }
             return deletedEmployee;
         }
 
         public Employee UpdateEmployee(int Id, Employee employee)
         {
+            Employee employeeToUpdate;
             try
             {
-                int index = _employees.FindIndex(e => e.ID == Id);
-                employee.ID = Id;
-                _employees[index] = employee;
+                employeeToUpdate = _employees.Single(e => e.ID == Id);
+                employeeToUpdate = employee;
             }
-            //change the type of exception
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("No Employee matches the given Id");
+                throw new Exception("No Employee matches the given Id", ex);
             }
-            return _employees[Id];
+            return employee;
         }
     }
 }

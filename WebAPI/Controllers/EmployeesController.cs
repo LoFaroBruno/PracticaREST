@@ -26,9 +26,9 @@ namespace WebAPI.Controllers
             {
                 return Request.CreateResponse(System.Net.HttpStatusCode.OK, Dao.GetEmployees());
             }
-            catch
+            catch(Exception ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"No employee matches the given parameters.");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{ex}{ex.StackTrace}{ex?.InnerException}");
             }
         }
         
@@ -54,9 +54,9 @@ namespace WebAPI.Controllers
             {
                 deletedEmployee = Dao.DeleteEmployee(ID);
             }
-            catch
+            catch (Exception ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"No employee matches the given id.");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{ex}{ex.StackTrace}{ex?.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, deletedEmployee);
         }
@@ -70,9 +70,9 @@ namespace WebAPI.Controllers
             {
                 updatedEmployee = Dao.UpdateEmployee(ID, employee);
             }
-            catch
+            catch (Exception ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"No employee matches the given id.");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{ex}{ex.StackTrace}{ex?.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, updatedEmployee);
         }

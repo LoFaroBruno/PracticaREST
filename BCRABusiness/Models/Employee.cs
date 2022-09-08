@@ -11,6 +11,7 @@ namespace BCRABusiness.Models
     public class Employee
     {
         [Key]
+        [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         [Required, Range(11111111, 99999999)]
