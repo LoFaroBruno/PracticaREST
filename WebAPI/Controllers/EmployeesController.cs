@@ -1,15 +1,17 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Http;
 using WebAPI.Filters;
+using System.ComponentModel;
 using DataAccess;
 using BCRABusiness.Models;
-using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
     public class EmployeesController : ApiController
     {
-        private static DAO Dao = new DAO();
+        private static EmployeeService Dao = new EmployeeService();
 
         // GET: Employees
         public HttpResponseMessage Get()
@@ -22,55 +24,62 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.OK, Dao.GetEmployees());
+                return Request.CreateResponse(System.Net.HttpStatusCode.OK, Dao.GetEmployee(ID));
             }
-            catch
+            catch (Exception ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"No employee matches the given parameters.");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{ex}{ex.StackTrace}{ex?.InnerException}");
             }
         }
-        
+
         // POST: Employees
         [ValidateModel]
-        public async Task<HttpResponseMessage> Post(Employee_GeocodingInfo employee)
+        public async System.Threading.Tasks.Task<HttpResponseMessage> Post(EmployeeWithGeocodingData employee)
         {
-            return Request.CreateResponse(System.Net.HttpStatusCode.OK, await Dao.SaveEmployee(employee).ConfigureAwait(false));
+            try
+            {
+                return Request.CreateResponse(System.Net.HttpStatusCode.OK, await Dao.SaveEmployee(employee).ConfigureAwait(false));
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{ex}{ex.StackTrace}{ex?.InnerException}");
+            }
         }
-        
+
         // DELETE: Employees
         public HttpResponseMessage Delete()
         {
             Dao.DeleteEmployees();
             return Request.CreateResponse(System.Net.HttpStatusCode.OK);
         }
-        
+
         // DELETE: Employees/ID
         public HttpResponseMessage Delete(int ID)
         {
-            Employee_GeocodingInfo deletedEmployee;
+            EmployeeWithGeocodingData deletedEmployee;
             try
             {
                 deletedEmployee = Dao.DeleteEmployee(ID);
             }
-            catch
+            catch (Exception ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"No employee matches the given id.");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{ex}{ex.StackTrace}{ex?.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, deletedEmployee);
         }
-        
+
         // PUT: Employees/ID
         [ValidateModel]
-        public HttpResponseMessage Put(int ID, Employee_GeocodingInfo employee)
+        public HttpResponseMessage Put(int ID, EmployeeWithGeocodingData employee)
         {
-            Employee_GeocodingInfo updatedEmployee;
+            EmployeeWithGeocodingData updatedEmployee;
             try
             {
                 updatedEmployee = Dao.UpdateEmployee(ID, employee);
             }
-            catch
+            catch (Exception ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"No employee matches the given id.");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{ex}{ex.StackTrace}{ex?.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, updatedEmployee);
         }

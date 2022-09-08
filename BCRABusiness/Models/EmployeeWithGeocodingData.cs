@@ -2,7 +2,7 @@
 
 namespace BCRABusiness.Models
 {
-    public class Employee_GeocodingInfo : Employee
+    public class EmployeeWithGeocodingData : Employee
     {
         [Required(ErrorMessage = "City is Required")]
         [StringLength(50)]
