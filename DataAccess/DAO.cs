@@ -23,7 +23,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Unable to get employees", ex);
             }
             return employees;
         }
@@ -36,7 +36,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception($"Unable to get employee with id = {Id}", ex); ;
             }
             return employee;
         }
@@ -52,7 +52,7 @@ namespace DataAccess
             }
             catch(Exception ex)
             {
-                throw ex;
+                throw new Exception($"Unable to save employee {employee}", ex);
             }
             return employee;
         }
@@ -65,7 +65,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Unable to delete employees", ex);
             }
         }
         public EmployeeWithGeocodingData DeleteEmployee(int Id)
@@ -73,15 +73,15 @@ namespace DataAccess
             EmployeeWithGeocodingData employeeToDelete;
             try
             {
-                employeeToDelete = _context.EmployeeWithGeocodingData.Single(e => e.ID == Id);
-                if(employeeToDelete == null)
+                employeeToDelete = _context.EmployeeWithGeocodingData.SingleOrDefault(e => e.ID == Id);
+                if (employeeToDelete == null)
                     throw new Exception("No employee matches the given Id");
                 _context.EmployeeWithGeocodingData.Remove(employeeToDelete);
                 _context.SaveChanges();
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception($"Unable to delete employee with Id {Id}", ex);
             }
             return employeeToDelete;
         }
@@ -111,7 +111,7 @@ namespace DataAccess
             }
             catch(Exception ex)
             {
-                throw ex;
+                throw new Exception($"Unable to update employee with Id = {Id}", ex);
             }
             return employee;
         }

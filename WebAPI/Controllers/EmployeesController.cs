@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception Ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.InnerException}");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.StackTrace} {Ex?.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, employees);
         }
@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception Ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.InnerException}");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.StackTrace} {Ex?.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, employee);
         }
@@ -52,9 +52,9 @@ namespace WebAPI.Controllers
             {
                 savedEmployee = await Dao.SaveEmployee(employee).ConfigureAwait(false);
             }
-            catch (Exception ex)
+            catch (Exception Ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"Error saving employee. {ex}");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.StackTrace} {Ex?.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, savedEmployee);
         }
@@ -68,7 +68,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception Ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.InnerException}");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.StackTrace} {Ex?.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.NoContent);
         }
@@ -83,7 +83,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception Ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.InnerException}");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.StackTrace} {Ex?.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, deletedEmployee);
         }
@@ -99,7 +99,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception Ex)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.InnerException}");
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound, $"{Ex} {Ex.StackTrace} {Ex?.InnerException}");
             }
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, updatedEmployee);
         }
