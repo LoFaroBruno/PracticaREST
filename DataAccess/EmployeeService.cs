@@ -7,10 +7,10 @@ using GeocodingService;
 
 namespace DataAccess
 {
-    public class DAO
+    public class EmployeeService
     {
         private ApplicationDbContext _context;
-        public DAO()
+        public EmployeeService()
         {
             _context = new ApplicationDbContext();
         }
