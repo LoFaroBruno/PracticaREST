@@ -5,6 +5,7 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{172BA930-33A4-4007-BBED-14C1CC2E4B31}"
 	ProjectSection(ProjectDependencies) = postProject
+		{348CB8B6-8D47-46B7-9238-496B46CF5C80} = {348CB8B6-8D47-46B7-9238-496B46CF5C80}
 		{8145397A-1633-41FC-8B98-9E1098E50DF2} = {8145397A-1633-41FC-8B98-9E1098E50DF2}
 	EndProjectSection
 EndProject
